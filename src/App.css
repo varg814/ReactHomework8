@@ -6,12 +6,12 @@
   box-sizing: border-box;
 }
 
-body{
+body {
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, #B068E9 0%, #6463E7 100%);
+  background: linear-gradient(180deg, #b068e9 0%, #6463e7 100%);
   padding: 24px;
 }
 
@@ -98,7 +98,7 @@ img {
 .product {
   max-width: 920px;
   width: 100%;
-  min-height: 510px;
+  min-height: 530px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,7 +132,7 @@ img {
     padding: 0 24px 48px 24px;
   }
 
-  body{
+  body {
     height: 200vh;
   }
 }

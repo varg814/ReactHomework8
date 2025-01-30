@@ -1,36 +1,23 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import AccordionItem from "../../molecules/AccordionItem/AccordionItem";
 
 const Accordion = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const [quotes, setQuotes] = useState([]);
 
-  const sections = [
-    {
-      title: "How many team members can I invite?",
-      content:
-        "No more than 2GB. All files in your account must fit your allotted storage space.",
-    },
-    {
-      title: "What is the maximum file upload size?",
-      content:
-        "No more than 2GB. All files in your account must fit your allotted storage space.",
-    },
-    {
-      title: "How do I reset my password?",
-      content:
-        "No more than 2GB. All files in your account must fit your allotted storage space.",
-    },
-    {
-      title: "Can I cancel my subscription?",
-      content:
-        "No more than 2GB. All files in your account must fit your allotted storage space.",
-    },
-    {
-      title: "Do you provide additional support?",
-      content:
-        "No more than 2GB. All files in your account must fit your allotted storage space.",
-    },
-  ];
+  useEffect(() => {
+    const fetchQuotes = async () => {
+      try {
+        const response = await fetch("https://dummyjson.com/quotes");
+        const data = await response.json();
+        setQuotes(data.quotes.slice(0, 5));
+      } catch (error) {
+        console.error("Error fetching quotes:", error);
+      }
+    };
+
+    fetchQuotes();
+  }, []); 
 
   function toggleAccordion(index) {
     if (activeIndex === index) {
@@ -43,11 +30,11 @@ const Accordion = () => {
   return (
     <div className="accordion">
       <h1>FAQ</h1>
-      {sections.map((section, index) => (
+      {quotes.map((quote, index) => (
         <AccordionItem
           key={index}
-          title={section.title}
-          content={section.content}
+          title={quote.author}
+          content={quote.quote}
           isActive={activeIndex === index}
           onToggle={() => toggleAccordion(index)}
         />
